@@ -5,13 +5,15 @@ MAINTAINER "Jeremy CURNY" <jeremy.curny.pro@gmail.com>
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN \
-    apt-get update \
-    && apt-get install -y graphviz git unzip zip \
+    apt-get update
+
+RUN  \
+    apt-get install -y graphviz git unzip zip \
     && apt-get clean autoclean \
     && apt-get autoremove
     
 RUN \
-    pecl install xdebug-2.5.0 \
+    pecl install xdebug \
     docker-php-ext-enable xdebug
 
 RUN \
