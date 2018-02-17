@@ -14,8 +14,8 @@ RUN  \
     
 RUN \
     pecl install xdebug \
-    docker-php-ext-enable xdebug \
-    echo "zend_extension=xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini
+    && docker-php-ext-enable xdebug \
+    && echo "zend_extension=xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini
 
 RUN \
     curl -sL -o /usr/local/bin/composer https://getcomposer.org/composer.phar \
