@@ -5,7 +5,7 @@ MAINTAINER "Jeremy CURNY" <jeremy.curny.pro@gmail.com>
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN  \
-    apt-get update
+    apt-get update \
     && apt-get install -y graphviz git unzip zip \
     && apt-get clean autoclean \
     && apt-get autoremove
