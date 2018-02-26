@@ -15,5 +15,5 @@ RUN \
     && chmod +x /usr/local/bin/composer
 
 RUN \
-    pecl install xdebug \
+    pecl install xdebug-2.5.5 \
     && docker-php-ext-enable xdebug
