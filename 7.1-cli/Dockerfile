@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN  \
     apt-get update \
-    && apt-get install -y graphviz git unzip zip \
+    && apt-get install -y graphviz git sshpass unzip zip \
     && apt-get clean autoclean \
     && apt-get autoremove
 
@@ -17,3 +17,8 @@ RUN \
 RUN \
     pecl install xdebug \
     && docker-php-ext-enable xdebug
+    
+RUN \
+    mkdir -p /root/.ssh \
+    && chmod 700 /root/.ssh \
+    && echo "" > /root/.ssh/known_hosts
