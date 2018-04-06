@@ -17,12 +17,10 @@ RUN \
     
 RUN \
     pecl install xdebug \
-    && docker-php-ext-install gd mcrypt xsl
-    
-RUN \
-    docker-php-ext-enable gd mcrypt xdebug xsl \
-    && echo "phar.readonly = off" > /usr/local/etc/php/conf.d/phar.ini
-    
+    && docker-php-ext-install gd mcrypt xsl \
+    && docker-php-ext-enable xdebug \
+    && echo "phar.readonly=Off" > /usr/local/etc/php/conf.d/phar.ini 
+
 RUN \
     mkdir -p /root/.ssh \
     && chmod 700 /root/.ssh \
