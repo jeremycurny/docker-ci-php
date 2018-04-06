@@ -14,6 +14,10 @@ RUN  \
 RUN \
     curl -sL -o /usr/local/bin/composer https://getcomposer.org/composer.phar \
     && chmod +x /usr/local/bin/composer
+    
+RUN \
+    pear channel-discover pear.phpdoc.org \
+    && pear install phpdoc/phpDocumentor
 
 RUN \
     pecl install xdebug \
