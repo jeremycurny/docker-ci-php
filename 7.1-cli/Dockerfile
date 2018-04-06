@@ -16,11 +16,11 @@ RUN \
     && chmod +x /usr/local/bin/composer
 
 RUN \
-    pecl install xdebug
+    pecl install xdebug \
+    && docker-php-ext-install gd mcrypt xsl
     
 RUN \
-    docker-php-ext-install gd mcrypt xsl \
-    && docker-php-ext-enable gd mcrypt xdebug xsl
+    docker-php-ext-enable gd mcrypt xdebug xsl
     
 RUN \
     mkdir -p /root/.ssh \
