@@ -15,8 +15,11 @@ RUN \
     && chmod +x /usr/local/bin/composer
 
 RUN \
-    pecl install xdebug \
-    && docker-php-ext-enable xdebug
+    pecl install xdebug
+    
+RUN \
+    docker-php-ext-enable xdebug \
+    && docker-php-ext-install xsl
     
 RUN \
     mkdir -p /root/.ssh \
