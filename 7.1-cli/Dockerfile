@@ -20,7 +20,7 @@ RUN \
     
 RUN \
     docker-php-ext-install gd mcrypt xsl \
-    && docker-php-ext-enable xdebug
+    && docker-php-ext-enable gd mcrypt xdebug xsl
     
 RUN \
     mkdir -p /root/.ssh \
