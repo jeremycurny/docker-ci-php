@@ -7,10 +7,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN  \
     apt-get update \
     && apt-get install -y graphviz git sshpass unzip zip \
-    && apt-get install -y libxslt-dev \
+    && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libxslt-dev \
     && apt-get clean autoclean \
     && apt-get autoremove
-
+  
 RUN \
     curl -sL -o /usr/local/bin/composer https://getcomposer.org/composer.phar \
     && chmod +x /usr/local/bin/composer
@@ -19,7 +19,9 @@ RUN \
     pecl install xdebug
     
 RUN \
-    docker-php-ext-enable xdebug \
+    docker-php-ext-enable gd \
+    && docker-php-ext-install mcrypt \
+    && docker-php-ext-enable xdebug \
     && docker-php-ext-install xsl
     
 RUN \
