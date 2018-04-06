@@ -19,10 +19,8 @@ RUN \
     pecl install xdebug
     
 RUN \
-    docker-php-ext-enable gd \
-    && docker-php-ext-install mcrypt \
-    && docker-php-ext-enable xdebug \
-    && docker-php-ext-install xsl
+    docker-php-ext-install gd mcrypt xsl \
+    && docker-php-ext-enable xdebug
     
 RUN \
     mkdir -p /root/.ssh \
