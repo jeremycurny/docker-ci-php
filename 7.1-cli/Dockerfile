@@ -19,7 +19,8 @@ RUN \
     pecl install xdebug \
     && docker-php-ext-install gd mcrypt xsl \
     && docker-php-ext-enable xdebug \
-    && echo "phar.readonly=Off" > /usr/local/etc/php/conf.d/phar.ini 
+    && echo "memory_limit=512M" > /usr/local/etc/php/conf.d/php.ini \
+    && echo "phar.readonly=Off" > /usr/local/etc/php/conf.d/php.ini
 
 RUN \
     mkdir -p /root/.ssh \
