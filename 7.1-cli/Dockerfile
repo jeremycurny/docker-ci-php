@@ -19,7 +19,7 @@ RUN \
     
 RUN \
     pecl install xdebug \
-    && docker-php-ext-install gd intl mcrypt pdo_mysql xsl zip \
+    && docker-php-ext-install gd iconv intl mcrypt pdo_mysql soap xsl zip \
     && docker-php-ext-enable xdebug \
     && echo "memory_limit=512M" > /usr/local/etc/php/conf.d/php.ini \
     && echo "phar.readonly=Off" >> /usr/local/etc/php/conf.d/php.ini
