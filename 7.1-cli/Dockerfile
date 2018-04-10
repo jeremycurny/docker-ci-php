@@ -4,6 +4,8 @@ MAINTAINER "Jeremy CURNY" <jeremy.curny.pro@gmail.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
 RUN  \
     apt-get update \
     && apt-get install -y graphviz git sshpass unzip zip \
@@ -17,7 +19,7 @@ RUN \
     
 RUN \
     pecl install xdebug \
-    && docker-php-ext-install gd intl mcrypt xsl zip \
+    && docker-php-ext-install gd intl mcrypt pdo_mysql xsl zip \
     && docker-php-ext-enable xdebug \
     && echo "memory_limit=512M" > /usr/local/etc/php/conf.d/php.ini \
     && echo "phar.readonly=Off" >> /usr/local/etc/php/conf.d/php.ini
