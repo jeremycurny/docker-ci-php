@@ -21,8 +21,8 @@ RUN \
     && echo "phar.readonly=Off" >> /usr/local/etc/php/conf.d/php.ini
 
 RUN \
-    pecl install xdebug \
-    && docker-php-ext-enable xdebug
+    pecl install redis xdebug \
+    && docker-php-ext-enable redis xdebug
 
 RUN \
     docker-php-ext-install gd iconv intl mcrypt pdo_mysql soap xsl zip
