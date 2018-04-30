@@ -31,7 +31,7 @@ RUN \
     
 RUN \
     composer global config --auth http-basic.repo.magento.com $MAGENTO2_PUB $MAGENTO2_PRI \
-    && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/projects/marketplace-eqp
+    && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/marketplace-eqp
 
 RUN \
     mkdir -p /root/.ssh \
