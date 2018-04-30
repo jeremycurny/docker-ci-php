@@ -5,6 +5,8 @@ MAINTAINER "Jeremy CURNY" <jeremy.curny.pro@gmail.com>
 ARG DEBIAN_FRONTEND=noninteractive
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
+ENV MAGENTO2_PUB 6c7c3956d991c6459bcbf6d0d977514f
+ENV MAGENTO2_PRI 2319f30adac6169a5c30ad2cb564d177
 
 RUN  \
     apt-get update \
@@ -20,6 +22,10 @@ RUN \
 RUN \
     pecl install xdebug-2.5.5 \
     && docker-php-ext-enable xdebug
+
+RUN \
+    composer global config --auth http-basic.repo.magento.com $MAGENTO2_PUB $MAGENTO2_PRI \
+    && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/marketplace-eqp
 
 RUN \
     mkdir -p /root/.ssh \
