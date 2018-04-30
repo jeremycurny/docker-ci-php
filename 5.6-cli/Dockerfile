@@ -4,9 +4,12 @@ MAINTAINER "Jeremy CURNY" <jeremy.curny.pro@gmail.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
 RUN  \
     apt-get update \
-    && apt-get install -y graphviz git sshpass unzip zip \
+    && apt-get install -y \
+        graphviz git sshpass unzip zip \
     && apt-get clean autoclean \
     && apt-get autoremove
 
