@@ -38,7 +38,7 @@ RUN \
     && chmod +x /usr/local/bin/validate_m2_package \
     && curl -sL -o ~/phpda https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey \
     && curl -sL -o ~/phpda https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda \
-    && chmod +x phpda
+    && chmod +x ~/phpda
 
 RUN \
     mkdir -p /root/.ssh \
