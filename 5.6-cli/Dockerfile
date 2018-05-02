@@ -21,10 +21,14 @@ RUN \
 
 RUN \
     pecl install xdebug-2.5.5 \
-    && docker-php-ext-enable xdebug
+    && docker-php-ext-enable xdebug \
+    && docker-php-ext-install zip
 
 RUN \
-    composer global config --auth http-basic.repo.magento.com $MAGENTO2_PUB $MAGENTO2_PRI \
+    composer global require squizlabs/php_codesniffer \
+    && composer global require phpmd/phpmd \
+    && composer global require sebastian/phpcpd \
+    && composer global config --auth http-basic.repo.magento.com $MAGENTO2_PUB $MAGENTO2_PRI \
     && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/marketplace-eqp
 
 RUN \
