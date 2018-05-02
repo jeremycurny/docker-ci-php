@@ -12,6 +12,7 @@ RUN  \
     apt-get update \
     && apt-get install -y \
         graphviz git sshpass unzip zip \
+        zlib1g-dev \
     && apt-get clean autoclean \
     && apt-get autoremove
 
