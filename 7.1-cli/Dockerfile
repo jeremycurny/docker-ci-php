@@ -10,8 +10,9 @@ ENV MAGENTO2_PRI 2319f30adac6169a5c30ad2cb564d177
 
 RUN  \
     apt-get update \
+    && curl -sL https://deb.nodesource.com/setup_8.x | bash \
     && apt-get install -y \ 
-        graphviz git sshpass unzip zip \
+        graphviz git nodejs sshpass unzip zip \
         libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libxslt-dev \
     && apt-get clean autoclean \
     && apt-get autoremove
