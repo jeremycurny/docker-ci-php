@@ -12,25 +12,30 @@ RUN  \
     apt-get update \
     && apt-get install -y \
         graphviz git sshpass unzip zip \
-        zlib1g-dev \
+        libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libxslt-dev \
     && apt-get clean autoclean \
     && apt-get autoremove
 
 RUN \
     curl -sL -o /usr/local/bin/composer https://getcomposer.org/composer.phar \
-    && chmod +x /usr/local/bin/composer
+    && chmod +x /usr/local/bin/composer \
+    && echo "memory_limit=512M" > /usr/local/etc/php/conf.d/php.ini \
+    && echo "phar.readonly=Off" >> /usr/local/etc/php/conf.d/php.ini
 
 RUN \
-    pecl install xdebug-2.5.5 \
-    && docker-php-ext-enable xdebug \
-    && docker-php-ext-install zip
+    pecl install redis xdebug-2.5.5 \
+    && docker-php-ext-enable redis xdebug \
+    && docker-php-ext-install gd iconv intl mcrypt pdo_mysql soap xsl zip
 
 RUN \
     composer global require squizlabs/php_codesniffer \
     && composer global require phpmd/phpmd \
     && composer global require sebastian/phpcpd \
     && composer global config --auth http-basic.repo.magento.com $MAGENTO2_PUB $MAGENTO2_PRI \
-    && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/marketplace-eqp
+    && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/marketplace-eqp \
+    && curl -sL -o ~/phpda https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey \
+    && curl -sL -o ~/phpda https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda \
+    && chmod +x ~/phpda
 
 RUN \
     mkdir -p /root/.ssh \
