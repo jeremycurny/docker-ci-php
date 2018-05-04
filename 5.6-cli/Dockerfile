@@ -26,7 +26,7 @@ RUN \
 RUN \
     pecl install redis xdebug-2.5.5 \
     && docker-php-ext-enable redis xdebug \
-    && docker-php-ext-install gd iconv intl mcrypt pdo_mysql soap xsl zip
+    && docker-php-ext-install bcmath gd iconv intl mcrypt pdo_mysql soap xsl zip
 
 RUN \
     composer global require squizlabs/php_codesniffer \
