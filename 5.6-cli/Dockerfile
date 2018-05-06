@@ -39,6 +39,9 @@ RUN \
     && chmod +x ~/phpda
 
 RUN \
+    npm install -g bower gulp grunt jshint
+
+RUN \
     mkdir -p /root/.ssh \
     && chmod 700 /root/.ssh \
     && echo "" > /root/.ssh/known_hosts
