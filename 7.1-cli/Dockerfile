@@ -42,7 +42,7 @@ RUN \
     && chmod +x ~/phpda
     
 RUN \
-    npm install -g bower gulp grunt jshint jslint
+    npm install -g bower gulp grunt jshint jslint standard
 
 RUN \
     mkdir -p /root/.ssh \
