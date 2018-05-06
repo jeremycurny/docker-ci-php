@@ -40,6 +40,9 @@ RUN \
     && curl -sL -o ~/phpda https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey \
     && curl -sL -o ~/phpda https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda \
     && chmod +x ~/phpda
+    
+RUN \
+    npm install -g bower gulp grunt jshint
 
 RUN \
     mkdir -p /root/.ssh \
