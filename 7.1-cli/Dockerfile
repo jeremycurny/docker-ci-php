@@ -11,8 +11,8 @@ ENV MAGENTO2_PRI 2319f30adac6169a5c30ad2cb564d177
 RUN  \
     apt-get update \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash \
-    && apt-get install -y \ 
-        graphviz git nodejs sshpass unzip zip \
+    && apt-get install -y \
+        gettext graphviz git nodejs sshpass unzip zip \
         libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libxslt-dev \
     && apt-get clean autoclean \
     && apt-get autoremove
@@ -27,7 +27,7 @@ RUN \
     pecl install redis xdebug \
     && docker-php-ext-enable redis xdebug \
     && docker-php-ext-install bcmath gd iconv intl mcrypt pdo_mysql soap xsl zip
-    
+
 RUN \
     composer global require squizlabs/php_codesniffer \
     && composer global require phpmd/phpmd \
@@ -40,7 +40,7 @@ RUN \
     && curl -sL -o ~/phpda https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey \
     && curl -sL -o ~/phpda https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda \
     && chmod +x ~/phpda
-    
+
 RUN \
     npm install -g bower gulp grunt jshint jslint semistandard standard
 
