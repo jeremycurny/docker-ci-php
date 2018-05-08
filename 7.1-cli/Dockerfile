@@ -9,13 +9,16 @@ ENV MAGENTO2_PUB 6c7c3956d991c6459bcbf6d0d977514f
 ENV MAGENTO2_PRI 2319f30adac6169a5c30ad2cb564d177
 
 RUN  \
-    apt-get update \
-    && curl -sL https://deb.nodesource.com/setup_8.x | bash \
+    curl -sL https://deb.nodesource.com/setup_8.x | bash \
     && apt-get install -y \
-        gettext graphviz git nodejs sshpass unzip zip \
+        gettext graphviz git nodejs python python3 python-pip python3-pip sshpass unzip zip \
         libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libxslt-dev \
+        python-dev python3-dev \
     && apt-get clean autoclean \
     && apt-get autoremove
+
+RUN \
+    pip install awscli bzt
 
 RUN \
     curl -sL -o /usr/local/bin/composer https://getcomposer.org/composer.phar \
