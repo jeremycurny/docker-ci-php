@@ -18,7 +18,7 @@ RUN  \
     && apt-get autoremove
 
 RUN \
-    pip install awscli bzt
+    pip install awscli
 
 RUN \
     curl -sL -o /usr/local/bin/composer https://getcomposer.org/composer.phar \
