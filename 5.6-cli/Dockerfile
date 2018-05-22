@@ -35,6 +35,7 @@ RUN \
     composer global require squizlabs/php_codesniffer \
     && composer global require phpmd/phpmd \
     && composer global require sebastian/phpcpd \
+    && composer global require phpmetrics/phpmetrics \
     && composer global config --auth http-basic.repo.magento.com $MAGENTO2_PUB $MAGENTO2_PRI \
     && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/marketplace-eqp \
     && curl -sL -o ~/phpda https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey \
