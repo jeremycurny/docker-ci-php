@@ -11,7 +11,7 @@ ENV MAGENTO2_PRI 2319f30adac6169a5c30ad2cb564d177
 RUN  \
     curl -sL https://deb.nodesource.com/setup_8.x | bash \
     && apt-get install -y \
-        gettext graphviz git nano nodejs python python3 python-pip python3-pip sshpass unzip zip \
+        gettext git gnupg graphviz nano nodejs python python3 python-pip python3-pip sshpass unzip zip \
         libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libxslt-dev \
         python-dev python3-dev \
     && apt-get clean autoclean \
