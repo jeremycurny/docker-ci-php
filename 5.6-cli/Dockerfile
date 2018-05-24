@@ -9,11 +9,13 @@ ENV MAGENTO2_PUB 6c7c3956d991c6459bcbf6d0d977514f
 ENV MAGENTO2_PRI 2319f30adac6169a5c30ad2cb564d177
 
 RUN  \
-    curl -sL https://deb.nodesource.com/setup_8.x | bash \
+    apt-get update \
     && apt-get install -y \
-        gettext graphviz git nano nodejs python python3 python-pip python3-pip sshpass unzip zip \
-        libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libxslt-dev \
+        gettext git gnupg graphviz nano python python3 python-pip python3-pip sshpass unzip zip \
+        libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev libxslt-dev \
         python-dev python3-dev \
+    && curl -sL https://deb.nodesource.com/setup_8.x | bash \
+    && apt-get install -y nodejs \
     && apt-get clean autoclean \
     && apt-get autoremove
 
@@ -43,7 +45,12 @@ RUN \
     && chmod +x ~/phpda
 
 RUN \
-    npm install -g bower eslint gulp grunt jshint jslint semistandard standard
+    mkdir -p eslint/standard eslint/semistandard \
+    && npm install -g bower eslint gulp grunt jshint jslint semistandard standard \
+    && npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-promise \
+    && npm install -g eslint-config-standard eslint-config-semistandard \
+    && echo '{"extends": ["standard"]}' > eslint/standard/.eslintrc.json \
+    && echo '{"extends": ["semistandard"]}' > eslint/semistandard/.eslintrc.json
 
 RUN \
     mkdir -p /root/.ssh \
