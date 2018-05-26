@@ -45,14 +45,14 @@ RUN \
     && chmod +x ~/phpda
 
 RUN \
-    mkdir -p eslint/standard eslint/semistandard \
+    mkdir -p ~/eslint/standard ~/eslint/semistandard \
     && npm install -g bower eslint gulp grunt jshint jslint semistandard standard \
-    && npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-promise \
+    && npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard \
     && npm install -g eslint-config-standard eslint-config-semistandard \
-    && echo '{"extends": ["standard"]}' > eslint/standard/.eslintrc.json \
-    && echo '{"extends": ["semistandard"]}' > eslint/semistandard/.eslintrc.json
+    && echo '{"extends": ["standard"]}' > ~/eslint/standard/.eslintrc.json \
+    && echo '{"extends": ["semistandard"]}' > ~/eslint/semistandard/.eslintrc.json
 
 RUN \
-    mkdir -p /root/.ssh \
-    && chmod 700 /root/.ssh \
-    && echo "" > /root/.ssh/known_hosts
+    mkdir -p ~/.ssh \
+    && chmod 700 ~/.ssh \
+    && echo "" > ~/.ssh/known_hosts
