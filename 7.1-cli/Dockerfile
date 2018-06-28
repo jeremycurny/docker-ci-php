@@ -35,9 +35,14 @@ RUN \
 
 RUN \
     composer global require squizlabs/php_codesniffer \
+    && ln -s ~/.composer/vendor/bin/phpcs /usr/local/bin/phpcs \
+    && ln -s ~/.composer/vendor/bin/phpcbf /usr/local/bin/phpcbf \
     && composer global require phpmd/phpmd \
+    && ln -s ~/.composer/vendor/bin/phpmd /usr/local/bin/phpmd \
     && composer global require sebastian/phpcpd \
+    && ln -s ~/.composer/vendor/bin/phpcpd /usr/local/bin/phpcpd \
     && composer global require phpmetrics/phpmetrics \
+    && ln -s ~/.composer/vendor/bin/phpmetrics /usr/local/bin/phpmetrics \
     && composer global config --auth http-basic.repo.magento.com $MAGENTO2_PUB $MAGENTO2_PRI \
     && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/marketplace-eqp \
     && curl -sL -o /usr/local/bin/validate_m2_package https://raw.githubusercontent.com/magento/marketplace-tools/master/validate_m2_package.php \
