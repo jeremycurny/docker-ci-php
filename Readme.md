@@ -9,22 +9,29 @@
 ### PHPCS
 
 ```
-~/.composer/vendor/bin/phpcs --version
-~/.composer/vendor/bin/phpcs --standard=PSR2 src/
-~/.composer/vendor/bin/phpcs --standard=.phpcs.xml src/
+phpcs --version
+phpcs --standard=PSR2 src/
+phpcs --standard=.phpcs.xml src/
 ```
 
 ### PHPMD
 
 ```
-~/.composer/vendor/bin/phpmd --version
-~/.composer/vendor/bin/phpmd src/ text cleancode,codesize,controversial,design,naming,unusedcode
-~/.composer/vendor/bin/phpmd src/ text .phpmd.xml
+phpmd --version
+phpmd src/ text cleancode,codesize,controversial,design,naming,unusedcode
+phpmd src/ text .phpmd.xml
 ```
 
 ### PHPCPD
 
 ```
-~/.composer/vendor/bin/phpcpd --version
-~/.composer/vendor/bin/phpcpd src/
+phpcpd --version
+phpcpd src/
+```
+
+### PDEPEND
+
+```
+pdepend --version
+phpcpd pdepend --jdepend-xml=/tmp/pdepend.xml .
 ```
