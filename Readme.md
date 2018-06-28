@@ -33,5 +33,5 @@ phpcpd src/
 
 ```
 pdepend --version
-phpcpd pdepend --jdepend-xml=/tmp/pdepend.xml .
+pdepend --jdepend-xml=/tmp/pdepend.xml .
 ```
