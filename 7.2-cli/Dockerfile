@@ -27,7 +27,7 @@ RUN \
     && chmod +x /usr/local/bin/composer \
     && echo "memory_limit=512M" > /usr/local/etc/php/conf.d/php.ini \
     && echo "phar.readonly=Off" >> /usr/local/etc/php/conf.d/php.ini
-docker-php-ext-enable mcrypt
+
 RUN \
     pecl install mcrypt redis xdebug \
     && docker-php-ext-enable mcrypt redis xdebug \
