@@ -27,11 +27,11 @@ RUN \
     && chmod +x /usr/local/bin/composer \
     && echo "memory_limit=512M" > /usr/local/etc/php/conf.d/php.ini \
     && echo "phar.readonly=Off" >> /usr/local/etc/php/conf.d/php.ini
-
+docker-php-ext-enable mcrypt
 RUN \
-    pecl install redis xdebug \
-    && docker-php-ext-enable redis xdebug \
-    && docker-php-ext-install bcmath gd iconv intl mcrypt pdo_mysql soap xsl zip
+    pecl install mcrypt redis xdebug \
+    && docker-php-ext-enable mcrypt redis xdebug \
+    && docker-php-ext-install bcmath gd iconv intl pdo_mysql soap xsl zip
 
 RUN \
     composer global require squizlabs/php_codesniffer \
