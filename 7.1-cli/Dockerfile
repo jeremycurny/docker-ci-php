@@ -59,7 +59,7 @@ RUN \
     && npm install -g bower eslint gulp grunt jshint jslint semistandard standard \
     && npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard \
     && npm install -g eslint-config-standard eslint-config-semistandard \
-    && npm install -g yaml-lint \
+    && npm install -g jsonlint yaml-lint \
     && echo '{"extends": ["standard"]}' > ~/eslint/standard/.eslintrc.json \
     && echo '{"extends": ["semistandard"]}' > ~/eslint/semistandard/.eslintrc.json
 
