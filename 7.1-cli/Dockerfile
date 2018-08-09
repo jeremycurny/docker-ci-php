@@ -52,7 +52,9 @@ RUN \
     && curl -sL -o ~/phpda https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda \
     && chmod +x ~/phpda \
     && curl -sL -o /usr/local/bin/pdepend http://static.pdepend.org/php/latest/pdepend.phar \
-    && chmod +x /usr/local/bin/pdepend
+    && chmod +x /usr/local/bin/pdepend \
+    && curl -sL -o /usr/local/bin/jsawk http://github.com/micha/jsawk/raw/master/jsawk \
+    && chmod +x /usr/local/bin/jsawk
 
 RUN \
     mkdir -p ~/eslint/standard ~/eslint/semistandard \
