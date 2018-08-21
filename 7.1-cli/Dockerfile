@@ -54,7 +54,9 @@ RUN \
     && curl -sL -o /usr/local/bin/pdepend http://static.pdepend.org/php/latest/pdepend.phar \
     && chmod +x /usr/local/bin/pdepend \
     && curl -sL -o /usr/local/bin/jsawk http://github.com/micha/jsawk/raw/master/jsawk \
-    && chmod +x /usr/local/bin/jsawk
+    && chmod +x /usr/local/bin/jsawk \
+    && curl -sL -o /usr/local/bin/slack https://raw.githubusercontent.com/rockymadden/slack-cli/master/src/slack \
+    && chmod +x /usr/local/bin/slack
 
 RUN \
     mkdir -p ~/eslint/standard ~/eslint/semistandard \
