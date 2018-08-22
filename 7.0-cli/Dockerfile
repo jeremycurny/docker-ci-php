@@ -1,4 +1,4 @@
-FROM php:7.0-cli
+FROM php:7.1-cli
 
 MAINTAINER "Jeremy CURNY" <jeremy.curny.pro@gmail.com>
 
@@ -11,7 +11,7 @@ ENV MAGENTO2_PRI 2319f30adac6169a5c30ad2cb564d177
 RUN  \
     apt-get update \
     && apt-get install -y \
-        gettext git gnupg graphviz jq nano python python3 python-pip python3-pip sshpass unzip zip \
+        ack-grep gettext git gnupg graphviz jq nano python python3 python-pip python3-pip shellcheck sshpass unzip zip \
         libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev libxml2-utils libxslt-dev \
         python-dev python3-dev \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash \
@@ -54,14 +54,16 @@ RUN \
     && curl -sL -o /usr/local/bin/pdepend http://static.pdepend.org/php/latest/pdepend.phar \
     && chmod +x /usr/local/bin/pdepend \
     && curl -sL -o /usr/local/bin/jsawk http://github.com/micha/jsawk/raw/master/jsawk \
-    && chmod +x /usr/local/bin/jsawk
+    && chmod +x /usr/local/bin/jsawk \
+    && curl -sL -o /usr/local/bin/slack https://raw.githubusercontent.com/rockymadden/slack-cli/master/src/slack \
+    && chmod +x /usr/local/bin/slack
 
 RUN \
     mkdir -p ~/eslint/standard ~/eslint/semistandard \
     && npm install -g bower eslint gulp grunt jshint jslint semistandard standard \
     && npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard \
     && npm install -g eslint-config-standard eslint-config-semistandard \
-    && npm install -g yaml-lint \
+    && npm install -g jsonlint yaml-lint \
     && echo '{"extends": ["standard"]}' > ~/eslint/standard/.eslintrc.json \
     && echo '{"extends": ["semistandard"]}' > ~/eslint/semistandard/.eslintrc.json
 
