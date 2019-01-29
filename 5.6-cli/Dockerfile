@@ -67,4 +67,5 @@ RUN \
 RUN \
     mkdir -p ~/.ssh \
     && chmod 700 ~/.ssh \
-    && echo "" > ~/.ssh/known_hosts
+    && echo "" > ~/.ssh/known_hosts \
+    && echo "Host *\n  StrictHostKeyChecking no\n  UserKnownHostsFile=/dev/null" > ~/.ssh/config
