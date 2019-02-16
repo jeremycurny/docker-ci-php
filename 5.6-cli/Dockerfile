@@ -25,7 +25,7 @@ RUN \
 RUN \
     curl -sL -o /usr/local/bin/composer https://getcomposer.org/composer.phar \
     && chmod +x /usr/local/bin/composer \
-    && echo "memory_limit=512M" > /usr/local/etc/php/conf.d/php.ini \
+    && echo "memory_limit=1024M" > /usr/local/etc/php/conf.d/php.ini \
     && echo "phar.readonly=Off" >> /usr/local/etc/php/conf.d/php.ini
 
 RUN \
@@ -57,7 +57,7 @@ RUN \
 
 RUN \
     mkdir -p ~/eslint/standard ~/eslint/semistandard \
-    && npm install -g bower eslint gulp grunt jshint jslint semistandard standard \
+    && npm install -g bower csslint eslint gulp grunt jshint jslint semistandard standard \
     && npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard \
     && npm install -g eslint-config-standard eslint-config-semistandard \
     && npm install -g jsonlint yaml-lint \
