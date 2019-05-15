@@ -44,8 +44,10 @@ RUN \
     && composer global require phpmetrics/phpmetrics \
     && ln -s ~/.composer/vendor/bin/phpmetrics /usr/local/bin/phpmetrics \
     && composer global config --auth http-basic.repo.magento.com $MAGENTO2_PUB $MAGENTO2_PRI \
-    && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/marketplace-eqp \
-    && curl -sL -o /usr/local/bin/validate_m2_package https://raw.githubusercontent.com/magento/marketplace-tools/master/validate_m2_package.php \
+    && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/marketplace-eqp
+    
+ RUN \
+    curl -sL -o /usr/local/bin/validate_m2_package https://raw.githubusercontent.com/magento/marketplace-tools/master/validate_m2_package.php \
     && sed -i '1s/^.*$/#!\/usr\/bin\/env php/' /usr/local/bin/validate_m2_package \
     && chmod +x /usr/local/bin/validate_m2_package \
     && curl -sL -o ~/phpda.pubkey https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey \
