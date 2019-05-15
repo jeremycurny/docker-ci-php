@@ -57,6 +57,10 @@ RUN \
     && chmod +x /usr/local/bin/jsawk \
     && curl -sL -o /usr/local/bin/slack https://raw.githubusercontent.com/rockymadden/slack-cli/master/src/slack \
     && chmod +x /usr/local/bin/slack
+    
+RUN \
+    curl -sL -o /usr/local/bin/devops-py-composer-validate https://raw.githubusercontent.com/jeremycurny/devops-py/master/src/php/composer-validate.py \
+    && chmod +x /usr/local/bin/devops-py-composer-validate
 
 RUN \
     mkdir -p ~/eslint/standard ~/eslint/semistandard \
