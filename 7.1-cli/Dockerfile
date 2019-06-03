@@ -66,7 +66,7 @@ RUN \
     && chmod +x ~/phpda
     
 RUN \
-    curl -sL -o /usr/local/bin/pdepend http://static.pdepend.org/php/latest/pdepend.phar \
+    curl -sL -o /usr/local/bin/pdepend https://github.com/jakzal/pdepend/releases/download/2.5.2-jakzal-2/pdepend.phar \
     && chmod +x /usr/local/bin/pdepend
  
 RUN \
