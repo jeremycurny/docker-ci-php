@@ -61,8 +61,8 @@ RUN \
     && chmod +x /usr/local/bin/validate_m2_package
     
 RUN \
-    curl -sL -o ~/phpda.pubkey https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey \
-    && curl -sL -o ~/phpda https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda \
+    curl -sL -o ~/phpda.pubkey https://raw.githubusercontent.com/mamuz/PhpDependencyAnalysis/v1.3.1/download/phpda.pubkey \
+    && curl -sL -o ~/phpda https://raw.githubusercontent.com/mamuz/PhpDependencyAnalysis/v1.3.1/download/phpda \
     && chmod +x ~/phpda
     
 RUN \
