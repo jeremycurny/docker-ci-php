@@ -45,24 +45,6 @@ RUN \
     && ln -s ~/.composer/vendor/bin/phpmetrics /usr/local/bin/phpmetrics \
     && composer global config --auth http-basic.repo.magento.com $MAGENTO2_PUB $MAGENTO2_PRI \
     && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/marketplace-eqp
-    
- RUN \
-    curl -sL -o /usr/local/bin/validate_m2_package https://raw.githubusercontent.com/magento/marketplace-tools/master/validate_m2_package.php \
-    && sed -i '1s/^.*$/#!\/usr\/bin\/env php/' /usr/local/bin/validate_m2_package \
-    && chmod +x /usr/local/bin/validate_m2_package \
-    && curl -sL -o ~/phpda.pubkey https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey \
-    && curl -sL -o ~/phpda https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda \
-    && chmod +x ~/phpda \
-    && curl -sL -o /usr/local/bin/pdepend http://static.pdepend.org/php/latest/pdepend.phar \
-    && chmod +x /usr/local/bin/pdepend \
-    && curl -sL -o /usr/local/bin/jsawk http://github.com/micha/jsawk/raw/master/jsawk \
-    && chmod +x /usr/local/bin/jsawk \
-    && curl -sL -o /usr/local/bin/slack https://raw.githubusercontent.com/rockymadden/slack-cli/master/src/slack \
-    && chmod +x /usr/local/bin/slack
-    
-RUN \
-    curl -sL -o /usr/local/bin/devops-py-composer-validate https://raw.githubusercontent.com/jeremycurny/devops-py/master/src/php/composer-validate.py \
-    && chmod +x /usr/local/bin/devops-py-composer-validate
 
 RUN \
     mkdir -p ~/eslint/standard ~/eslint/semistandard \
@@ -72,6 +54,32 @@ RUN \
     && npm install -g jsonlint yaml-lint \
     && echo '{"extends": ["standard"]}' > ~/eslint/standard/.eslintrc.json \
     && echo '{"extends": ["semistandard"]}' > ~/eslint/semistandard/.eslintrc.json
+
+RUN \
+    curl -sL -o /usr/local/bin/validate_m2_package https://raw.githubusercontent.com/magento/marketplace-tools/master/validate_m2_package.php \
+    && sed -i '1s/^.*$/#!\/usr\/bin\/env php/' /usr/local/bin/validate_m2_package \
+    && chmod +x /usr/local/bin/validate_m2_package
+    
+RUN \
+    curl -sL -o ~/phpda.pubkey https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey \
+    && curl -sL -o ~/phpda https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda \
+    && chmod +x ~/phpda
+    
+RUN \
+    curl -sL -o /usr/local/bin/pdepend http://static.pdepend.org/php/latest/pdepend.phar \
+    && chmod +x /usr/local/bin/pdepend
+ 
+RUN \
+    curl -sL -o /usr/local/bin/jsawk http://github.com/micha/jsawk/raw/master/jsawk \
+    && chmod +x /usr/local/bin/jsawk
+    
+RUN \
+    curl -sL -o /usr/local/bin/slack https://raw.githubusercontent.com/rockymadden/slack-cli/master/src/slack \
+    && chmod +x /usr/local/bin/slack
+    
+RUN \
+    curl -sL -o /usr/local/bin/devops-py-composer-validate https://raw.githubusercontent.com/jeremycurny/devops-py/master/src/php/composer-validate.py \
+    && chmod +x /usr/local/bin/devops-py-composer-validate
 
 RUN \
     mkdir -p ~/.ssh \
