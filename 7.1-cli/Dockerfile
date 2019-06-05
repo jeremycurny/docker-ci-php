@@ -20,7 +20,7 @@ RUN  \
     && apt-get autoremove
 
 RUN \
-    pip install awscli
+    pip install awscli yq
 
 RUN \
     curl -sL -o /usr/local/bin/composer https://getcomposer.org/composer.phar \
