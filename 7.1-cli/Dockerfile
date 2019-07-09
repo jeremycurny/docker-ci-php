@@ -56,6 +56,10 @@ RUN \
     && echo '{"extends": ["semistandard"]}' > ~/eslint/semistandard/.eslintrc.json
 
 RUN \
+    curl -sL -o /usr/local/bin/php-cs-fixer https://cs.symfony.com/download/php-cs-fixer-v2.phar \
+    && chmod +x /usr/local/bin/php-cs-fixer
+
+RUN \
     curl -sL -o /usr/local/bin/validate_m2_package https://raw.githubusercontent.com/magento/marketplace-tools/master/validate_m2_package.php \
     && sed -i '1s/^.*$/#!\/usr\/bin\/env php/' /usr/local/bin/validate_m2_package \
     && chmod +x /usr/local/bin/validate_m2_package
