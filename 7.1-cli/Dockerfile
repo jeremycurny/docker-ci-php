@@ -42,8 +42,11 @@ RUN \
     && composer global require sebastian/phpcpd \
     && ln -s ~/.composer/vendor/bin/phpcpd /usr/local/bin/phpcpd \
     && composer global require phpmetrics/phpmetrics \
-    && ln -s ~/.composer/vendor/bin/phpmetrics /usr/local/bin/phpmetrics \
-    && composer global config --auth http-basic.repo.magento.com $MAGENTO2_PUB $MAGENTO2_PRI \
+    && ln -s ~/.composer/vendor/bin/phpmetrics /usr/local/bin/phpmetrics
+    
+RUN \
+    composer global config --auth http-basic.repo.magento.com $MAGENTO2_PUB $MAGENTO2_PRI \
+    && composer create-project magento/magento-coding-standard ~/magento-coding-standard \
     && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/marketplace-eqp
 
 RUN \
