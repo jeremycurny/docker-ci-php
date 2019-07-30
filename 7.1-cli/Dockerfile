@@ -8,30 +8,52 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV MAGENTO2_PUB 6c7c3956d991c6459bcbf6d0d977514f
 ENV MAGENTO2_PRI 2319f30adac6169a5c30ad2cb564d177
 
-RUN  \
+ENV FORCE_FULL_BUILD 20190730
+
+RUN \
     apt-get update \
     && apt-get install -y \
-        ack-grep dos2unix gettext git gnupg graphviz jq moreutils nano python python3 python-pip python3-pip shellcheck sshpass unzip zip \
         libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev libxml2-utils libxslt-dev \
-        python-dev python3-dev \
-    && curl -sL https://deb.nodesource.com/setup_8.x | bash \
-    && apt-get install -y nodejs \
-    && apt-get clean autoclean \
-    && apt-get autoremove
+    && apt-get clean autoclean autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN \
-    pip install awscli yq
-
-RUN \
-    curl -sL -o /usr/local/bin/composer https://getcomposer.org/composer.phar \
-    && chmod +x /usr/local/bin/composer \
-    && echo "memory_limit=1024M" > /usr/local/etc/php/conf.d/php.ini \
+    echo "memory_limit=1024M" > /usr/local/etc/php/conf.d/php.ini \
     && echo "phar.readonly=Off" >> /usr/local/etc/php/conf.d/php.ini
 
 RUN \
     pecl install redis xdebug \
     && docker-php-ext-enable redis xdebug \
     && docker-php-ext-install bcmath gd iconv intl mcrypt pdo_mysql soap xsl zip
+
+RUN \
+    mkdir -p ~/.ssh \
+    && chmod 700 ~/.ssh \
+    && echo "" > ~/.ssh/known_hosts \
+    && echo "Host *\n  StrictHostKeyChecking no\n  UserKnownHostsFile=/dev/null\n  LogLevel ERROR" > ~/.ssh/config
+
+RUN \
+    apt-get update \
+    && apt-get install -y \
+        ack-grep dos2unix gettext git gnupg graphviz jq moreutils nano python python3 python-pip python3-pip shellcheck sshpass unzip zip \
+        python-dev python3-dev \
+    && apt-get clean autoclean autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN \
+    curl -sL -o /usr/local/bin/composer https://getcomposer.org/composer.phar \
+    && chmod +x /usr/local/bin/composer
+
+RUN \
+    curl -sL -o /usr/local/bin/jsawk http://github.com/micha/jsawk/raw/master/jsawk \
+    && chmod +x /usr/local/bin/jsawk
+    
+RUN \
+    curl -sL -o /usr/local/bin/slack https://raw.githubusercontent.com/rockymadden/slack-cli/master/src/slack \
+    && chmod +x /usr/local/bin/slack
+
+RUN \
+    pip install awscli yq
 
 RUN \
     composer global require squizlabs/php_codesniffer \
@@ -54,15 +76,6 @@ RUN \
     && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/marketplace-eqp
 
 RUN \
-    mkdir -p ~/eslint/standard ~/eslint/semistandard \
-    && npm install -g bower csslint eslint gulp grunt jshint jslint semistandard standard \
-    && npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard \
-    && npm install -g eslint-config-standard eslint-config-semistandard \
-    && npm install -g jsonlint yaml-lint \
-    && echo '{"extends": ["standard"]}' > ~/eslint/standard/.eslintrc.json \
-    && echo '{"extends": ["semistandard"]}' > ~/eslint/semistandard/.eslintrc.json
-
-RUN \
     curl -sL -o /usr/local/bin/php-cs-fixer https://cs.symfony.com/download/php-cs-fixer-v2.phar \
     && chmod +x /usr/local/bin/php-cs-fixer
 
@@ -79,22 +92,18 @@ RUN \
 RUN \
     curl -sL -o /usr/local/bin/pdepend https://github.com/jakzal/pdepend/releases/download/2.5.2-jakzal-2/pdepend.phar \
     && chmod +x /usr/local/bin/pdepend
- 
-RUN \
-    curl -sL -o /usr/local/bin/jsawk http://github.com/micha/jsawk/raw/master/jsawk \
-    && chmod +x /usr/local/bin/jsawk
-    
-RUN \
-    curl -sL -o /usr/local/bin/slack https://raw.githubusercontent.com/rockymadden/slack-cli/master/src/slack \
-    && chmod +x /usr/local/bin/slack
-    
-RUN \
-    curl -sL -o /usr/local/bin/devops-py-composer-validate https://raw.githubusercontent.com/jeremycurny/devops-py/master/src/php/composer-validate.py \
-    && chmod +x /usr/local/bin/devops-py-composer-validate
 
 RUN \
-    mkdir -p ~/.ssh \
-    && chmod 700 ~/.ssh \
-    && echo "" > ~/.ssh/known_hosts \
-    && echo "Host *\n  StrictHostKeyChecking no\n  UserKnownHostsFile=/dev/null\n  LogLevel ERROR" > ~/.ssh/config
+    curl -sL https://deb.nodesource.com/setup_10.x | bash \
+    && apt-get install -y nodejs \
+    && apt-get clean autoclean autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
 
+RUN \
+    mkdir -p ~/eslint/standard ~/eslint/semistandard \
+    && npm install -g bower csslint eslint gulp grunt jshint jslint semistandard standard \
+    && npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard \
+    && npm install -g eslint-config-standard eslint-config-semistandard \
+    && npm install -g jsonlint yaml-lint \
+    && echo '{"extends": ["standard"]}' > ~/eslint/standard/.eslintrc.json \
+    && echo '{"extends": ["semistandard"]}' > ~/eslint/semistandard/.eslintrc.json
