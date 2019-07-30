@@ -67,10 +67,6 @@ RUN \
     && ln -s ~/.composer/vendor/bin/phpmetrics /usr/local/bin/phpmetrics
     
 RUN \
-    composer global require victorjonsson/markdowndocs \
-    && ln -s ~/.composer/vendor/bin/phpdoc-md /usr/local/bin/phpdoc-md
-    
-RUN \
     composer global config --auth http-basic.repo.magento.com $MAGENTO2_PUB $MAGENTO2_PRI \
     && composer create-project magento/magento-coding-standard ~/magento-coding-standard \
     && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/marketplace-eqp
