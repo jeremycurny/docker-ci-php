@@ -1,4 +1,4 @@
-FROM php:7.0-cli
+FROM php:7.0-cli-stretch
 
 MAINTAINER "Jeremy CURNY" <jeremy.curny.pro@gmail.com>
 
