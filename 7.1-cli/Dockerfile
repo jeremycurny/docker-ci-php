@@ -24,7 +24,7 @@ RUN \
 RUN \
     pecl install redis xdebug \
     && docker-php-ext-enable redis xdebug \
-    && docker-php-ext-install bcmath gd iconv intl mcrypt pdo_mysql soap xsl zip
+    && docker-php-ext-install bcmath gd iconv intl mcrypt pdo_mysql soap sockets xsl zip
 
 RUN \
     mkdir -p ~/.ssh \
