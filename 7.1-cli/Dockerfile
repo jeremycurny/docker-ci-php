@@ -65,15 +65,15 @@ RUN \
     && ln -s ~/.composer/vendor/bin/phpcpd /usr/local/bin/phpcpd \
     && composer global require phpmetrics/phpmetrics \
     && ln -s ~/.composer/vendor/bin/phpmetrics /usr/local/bin/phpmetrics
-    
+   
+RUN \
+    curl -sL -o /usr/local/bin/php-cs-fixer https://cs.symfony.com/download/php-cs-fixer-v2.phar \
+    && chmod +x /usr/local/bin/php-cs-fixer
+   
 RUN \
     composer global config --auth http-basic.repo.magento.com $MAGENTO2_PUB $MAGENTO2_PRI \
     && composer create-project magento/magento-coding-standard ~/magento-coding-standard \
     && composer create-project --repository=https://repo.magento.com magento/marketplace-eqp ~/marketplace-eqp
-
-RUN \
-    curl -sL -o /usr/local/bin/php-cs-fixer https://cs.symfony.com/download/php-cs-fixer-v2.phar \
-    && chmod +x /usr/local/bin/php-cs-fixer
 
 RUN \
     curl -sL -o /usr/local/bin/validate_m2_package https://raw.githubusercontent.com/magento/marketplace-tools/master/validate_m2_package.php \
