@@ -97,9 +97,10 @@ RUN \
 
 RUN \
     mkdir -p ~/eslint/standard ~/eslint/semistandard \
-    && npm install -g bower csslint eslint gulp grunt jshint jslint semistandard standard \
+    && npm install -g bower csslint eslint gulp grunt jshint jslint semistandard standard stylelint \
     && npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard \
     && npm install -g eslint-config-standard eslint-config-semistandard \
+    && npm install -g stylelint-config-standard \
     && npm install -g jsonlint yaml-lint \
     && echo '{"extends": ["standard"]}' > ~/eslint/standard/.eslintrc.json \
     && echo '{"extends": ["semistandard"]}' > ~/eslint/semistandard/.eslintrc.json
