@@ -27,6 +27,15 @@ RUN \
     && docker-php-ext-install bcmath gd gettext iconv intl pdo_mysql soap sockets xsl zip
 
 RUN \
+    curl -o libsodium.tar.gz https://download.libsodium.org/libsodium/releases/libsodium-1.0.18.tar.gz \
+    && tar xfvz libsodium.tar.gz \
+    && rm libsodium.tar.gz \
+    && cd libsodium-1.0.18 \
+    && ./configure \
+    && make && make install \
+    && pecl install -f libsodium
+
+RUN \
     mkdir -p ~/.ssh \
     && chmod 700 ~/.ssh \
     && echo "" > ~/.ssh/known_hosts \
