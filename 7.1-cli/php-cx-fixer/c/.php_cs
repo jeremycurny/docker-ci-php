@@ -25,7 +25,7 @@ return PhpCsFixer\Config::create()
 
     // Rules
     'general_phpdoc_annotation_remove' => [
-      'annotations' => ['author', 'copyright', 'package']
+      'annotations' => ['author', 'copyright', 'license', 'package']
     ],
     'no_blank_lines_before_namespace' => true,
     'php_unit_test_class_requires_covers' => false,
