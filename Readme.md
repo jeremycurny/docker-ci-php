@@ -1,4 +1,4 @@
-# Docker Apache PHP image
+# Docker CI PHP image
 
 [![](https://images.microbadger.com/badges/image/jeremycurny/ci-php.svg)](http://microbadger.com/images/jeremycurny/ci-php)
 
