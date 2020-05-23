@@ -33,7 +33,7 @@ RUN \
 RUN \
     apt-get update \
     && apt-get install -y \
-        ack-grep bsdmainutils dos2unix gettext git gnupg graphviz jq moreutils nano python python3 python-pip python3-pip shellcheck sshpass tree unzip zip \
+        ack-grep bash bsdmainutils dos2unix gettext git gnupg graphviz jq moreutils nano python python3 python-pip python3-pip shellcheck sshpass rsync tree unzip zip \
         python-dev python3-dev \
     && apt-get clean autoclean autoremove -y \
     && rm -rf /var/lib/apt/lists/*
